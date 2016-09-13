@@ -1,0 +1,29 @@
+{
+  "name": "wordnik_dictionary",
+  "version": "1.0.0",
+  "description": "Command line dictionary using wordnik api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nivesh2/wordnikDictionary.git"
+  },
+  "keywords": [
+    "wordnik",
+    "api",
+    "dictionary",
+    "demo",
+    "command",
+    "line",
+    "dictionary"
+  ],
+  "author": "nivesh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nivesh2/wordnikDictionary/issues"
+  },
+  "engines" : { "node" : ">=4.0.0" },
+  "homepage": "https://github.com/nivesh2/wordnikDictionary#readme"
+}
