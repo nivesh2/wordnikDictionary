@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/nivesh2/wordnikDictionary#readme",
   "dependencies": {
+    "async-waterfall": "0.1.5",
     "request-json": "0.6.1"
   }
 }
