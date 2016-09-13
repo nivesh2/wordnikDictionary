@@ -24,6 +24,11 @@
   "bugs": {
     "url": "https://github.com/nivesh2/wordnikDictionary/issues"
   },
-  "engines" : { "node" : ">=4.0.0" },
-  "homepage": "https://github.com/nivesh2/wordnikDictionary#readme"
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "homepage": "https://github.com/nivesh2/wordnikDictionary#readme",
+  "dependencies": {
+    "request-json": "0.6.1"
+  }
 }
