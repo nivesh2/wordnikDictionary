@@ -14,9 +14,9 @@ module.exports = (function(){
             input[v].forEach((v)=>{
                console.log(` - ${v}`);
             });
-            console.log('--------------------------------------------\n')
+            console.log('--------------------------------------------\n');
         });
-    }
+    };
 
     //public exposed methods
     const that ={};
@@ -26,13 +26,28 @@ module.exports = (function(){
 
         wordnik.getDefinition(word,function(err,json){
             if(err) return console.log('Error while fetching Definition from wordnik API',err);
+            if(json.length === 0) return console.log(`No data found for: ${word} \n`);
 
             console.log(`Definitions: ${word} \n`);
             printDefinition(format.definition(json));
         });
 
     };
-    
+
+    that.getSynonym = function(word){
+        if(!word) return console.log(output.errBlankWord);
+
+        wordnik.getSynonym(word,function(err,json){
+            if(err) return console.log('Error while fetching Synonym from wordnik API',err);
+            if(json.length === 0) return console.log(`No data found for: ${word}`);
+
+            console.log(`Synonym: ${word} `);
+            let result = json[0].words.join(',');
+            console.log(result.trim()+'\n');
+        });
+
+    };
+
 
     return that;
 

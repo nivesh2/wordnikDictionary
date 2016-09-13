@@ -16,6 +16,7 @@ module.exports = function(input){
                 operations.getDefinition(word);
                 break;
             case 'syn':
+                operations.getSynonym(word);
                 break;
             case 'ant':
                 break;

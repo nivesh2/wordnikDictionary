@@ -15,12 +15,20 @@ module.exports = (function(){
     that.getDefinition = function(word,callback){
 
         let path = `word.json/${word}/definitions?limit=200&includeRelated=true&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=${api_key}`;
-        client.get(path, function(err, res, body) {
+        client.get(path, (err, res, body)=>{
             if(err) return callback(err);
             return callback(null,body);
         });
     };
 
+    that.getSynonym = function(word,callback){
+        let path = `word.json/${word}/relatedWords?useCanonical=false&relationshipTypes=synonym&limitPerRelationshipType=10&api_key=${api_key}`;
+        client.get(path, (err,res,body)=>{
+          if(err) return callback(err);
+          return callback(null,body);
+        });
+    };
+    
     return that;
 
 })();
