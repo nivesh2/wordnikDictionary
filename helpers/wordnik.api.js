@@ -10,25 +10,32 @@ const api_key = config.api_key;
 
 module.exports = (function(){
 
+    //private methods
+    const fetchData = function(path,callback){
+      client.get(path, (err, res, body)=>{
+          if(err) return callback(err);
+          return callback(null,body);
+      });
+    };
+
+    //public methods
     const that = {};
 
     that.getDefinition = function(word,callback){
-
         let path = `word.json/${word}/definitions?limit=200&includeRelated=true&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=${api_key}`;
-        client.get(path, (err, res, body)=>{
-            if(err) return callback(err);
-            return callback(null,body);
-        });
+        fetchData(path,callback);
     };
 
     that.getSynonym = function(word,callback){
         let path = `word.json/${word}/relatedWords?useCanonical=false&relationshipTypes=synonym&limitPerRelationshipType=10&api_key=${api_key}`;
-        client.get(path, (err,res,body)=>{
-          if(err) return callback(err);
-          return callback(null,body);
-        });
+        fetchData(path,callback);
     };
-    
+
+    that.getAntonym = function(word,callback){
+        let path = `word.json/${word}/relatedWords?useCanonical=false&relationshipTypes=antonym&limitPerRelationshipType=10&api_key=${api_key}`;
+        fetchData(path,callback);
+    };
+
     return that;
 
 })();

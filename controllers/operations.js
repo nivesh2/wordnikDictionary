@@ -28,7 +28,7 @@ module.exports = (function(){
             if(err) return console.log('Error while fetching Definition from wordnik API',err);
             if(json.length === 0) return console.log(`No data found for: ${word} \n`);
 
-            console.log(`Definitions: ${word} \n`);
+            console.log(`\nDefinitions: ${word} \n`);
             printDefinition(format.definition(json));
         });
 
@@ -41,7 +41,21 @@ module.exports = (function(){
             if(err) return console.log('Error while fetching Synonym from wordnik API',err);
             if(json.length === 0) return console.log(`No data found for: ${word}`);
 
-            console.log(`Synonym: ${word} `);
+            console.log(`\nSynonym: ${word} `);
+            let result = json[0].words.join(',');
+            console.log(result.trim()+'\n');
+        });
+
+    };
+
+    that.getAntonym = function(word){
+        if(!word) return console.log(output.errBlankWord);
+
+        wordnik.getAntonym(word,function(err,json){
+            if(err) return console.log('Error while fetching Antonym from wordnik API',err);
+            if(json.length === 0) return console.log(`No data found for: ${word}`);
+
+            console.log(`\nAntonym: ${word} `);
             let result = json[0].words.join(',');
             console.log(result.trim()+'\n');
         });
