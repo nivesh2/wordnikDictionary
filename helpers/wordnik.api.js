@@ -40,6 +40,12 @@ module.exports = (function(){
         let path = `word.json/${word}/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=5&api_key=${api_key}`;
         fetchData(path,callback);
     };
+
+    that.getWordOfTheDay = function(date,callback){
+      let path = `words.json/wordOfTheDay?date=${date}&api_key=${api_key}`;
+      fetchData(path,callback);
+    };
+
     return that;
 
 })();

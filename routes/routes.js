@@ -28,14 +28,21 @@ module.exports = function(input){
                 operations.getFullDictionary(word);
                 break;
             case 'play':
+
                 break;
             case '--help':
                 console.log(output.help);
                 break;
             default:
-                // for ./dict <word>
-                word = command;
-                operations.getFullDictionary(word);
+            word = command;
+            if(word){
+              // for ./dict <word>
+              operations.getFullDictionary(word);
+            } else {
+              // for ./dict
+              operations.getWordOfTheDayDict();
+            }
+
         }
     }else{
         console.log(output.errCommand);

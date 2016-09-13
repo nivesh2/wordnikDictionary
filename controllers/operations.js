@@ -27,11 +27,12 @@ module.exports = (function(){
 
         wordnik.getDefinition(word,function(err,json){
             if(err) return console.log('Error while fetching Definition from wordnik API',err);
-            if(json.length === 0) return console.log(`No Definition found for: ${word} \n`);
-
-            console.log(`\nDefinitions: ${word} \n`);
-            printDefinition(format.definition(json));
-
+            if(json.length === 0) {
+              console.log(`No Definition found for: ${word} \n`);
+            }else{
+              console.log(`\nDefinitions: ${word} \n`);
+              printDefinition(format.definition(json));
+            }
             //for async-waterfall, while getting Full dictinary
             if(callback) callback(null,word);
         });
@@ -42,12 +43,13 @@ module.exports = (function(){
 
         wordnik.getSynonym(word,function(err,json){
             if(err) return console.log('Error while fetching Synonym from wordnik API',err);
-            if(json.length === 0) return console.log(`No Synonym found for: ${word}`);
-
-            console.log(`\nSynonym: ${word} `);
-            let result = json[0].words.join(',');
-            console.log(result.trim()+'\n');
-
+            if(json.length === 0){
+              console.log(`No Synonym found for: ${word}`);
+            }else{
+              console.log(`\nSynonym: ${word} `);
+              let result = json[0].words.join(',');
+              console.log(result.trim()+'\n');
+            }
             //for async-waterfall, while getting Full dictinary
             if(callback) callback(null,word);
         });
@@ -58,12 +60,13 @@ module.exports = (function(){
 
         wordnik.getAntonym(word,function(err,json){
             if(err) return console.log('Error while fetching Antonym from wordnik API',err);
-            if(json.length === 0) return console.log(`No Antonym found for: ${word}`);
-
-            console.log(`\nAntonym: ${word} `);
-            let result = json[0].words.join(',');
-            console.log(result.trim()+'\n');
-
+            if(json.length === 0){
+              console.log(`No Antonym found for: ${word}`);
+            }else{
+              console.log(`\nAntonym: ${word} `);
+              let result = json[0].words.join(',');
+              console.log(result.trim()+'\n');
+            }
             //for async-waterfall, while getting Full dictinary
             if(callback) callback(null,word);
         });
@@ -74,12 +77,14 @@ module.exports = (function(){
 
       wordnik.getExamples(word,function(err,json){
           if(err) return console.log('Error while fetching Examples from wordnik API',err);
-          if(json.length === 0) return console.log(`No Examples found for: ${word}`);
-
-          console.log(`\nExamples: ${word} `);
-          json.examples.forEach((v,i)=>{
+          if(json.length === 0){
+            console.log(`No Examples found for: ${word}`);
+          }else{
+            console.log(`\nExamples: ${word} `);
+            json.examples.forEach((v,i)=>{
             console.log(` ${i}. ${v.text}`);
-          });
+            });
+          }
 
           //for async-waterfall, while getting Full dictinary
           if(callback) callback(null,word);
@@ -104,6 +109,16 @@ module.exports = (function(){
        });
      };
 
+     /*
+      * getting word of the day.
+      */
+     that.getWordOfTheDayDict = function(){
+        let todayDate = (new Date()).toISOString().slice(0,10);
+        wordnik.getWordOfTheDay(todayDate,function(err,json){
+          console.log(`\nWord of the DAY(${todayDate}): ${json.word}`);
+          that.getFullDictionary(json.word);
+        });
+     }
     return that;
 
 })();
