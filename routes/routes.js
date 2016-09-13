@@ -24,18 +24,20 @@ module.exports = function(input){
             case 'ex':
                 operations.getExamples(word);
                 break;
-            case 'word':
+            case 'dict':
+                operations.getFullDictionary(word);
                 break;
             case 'play':
                 break;
             case '--help':
                 console.log(output.help);
+                break;
             default:
-                console.log(output.errCommand);
+                // for ./dict <word>
+                word = command;
+                operations.getFullDictionary(word);
         }
-
     }else{
         console.log(output.errCommand);
     }
-
 };
