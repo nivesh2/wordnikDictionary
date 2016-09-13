@@ -62,6 +62,19 @@ module.exports = (function(){
 
     };
 
+    that.getExamples = function(word){
+      if(!word) return console.log(output.errBlankWord);
+
+      wordnik.getExamples(word,function(err,json){
+          if(err) return console.log('Error while fetching Examples from wordnik API',err);
+          if(json.length === 0) return console.log(`No data found for: ${word}`);
+
+          console.log(`\nExamples: ${word} `);
+          json.examples.forEach((v,i)=>{
+            console.log(` ${i}. ${v.text}`);
+          });          
+      });
+    };
 
     return that;
 

@@ -22,6 +22,7 @@ module.exports = function(input){
                 operations.getAntonym(word);
                 break;
             case 'ex':
+                operations.getExamples(word);
                 break;
             case 'word':
                 break;

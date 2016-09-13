@@ -36,6 +36,10 @@ module.exports = (function(){
         fetchData(path,callback);
     };
 
+    that.getExamples = function(word,callback){
+        let path = `word.json/${word}/examples?includeDuplicates=false&useCanonical=false&skip=0&limit=5&api_key=${api_key}`;
+        fetchData(path,callback);
+    };
     return that;
 
 })();
