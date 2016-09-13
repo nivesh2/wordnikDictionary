@@ -1,5 +1,7 @@
 'use strict';
 
+const output = require('../config/output');
+
 module.exports = function(input){
     let app = input[0];
     let command = input[1];
@@ -21,12 +23,14 @@ module.exports = function(input){
                 break;
             case 'play':
                 break;
+            case '--help':
+                console.log(output.help);
             default:
-                console.log('Invalid Input');
+                console.log(output.errCommand);
         }
 
     }else{
-        console.log('Command not recognized');
+        console.log(output.errCommand);
     }
 
 };
