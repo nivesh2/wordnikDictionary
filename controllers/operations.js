@@ -19,6 +19,9 @@ module.exports = (function(){
         });
     };
 
+    var isEmpty = function(obj){
+      return (Object.getOwnPropertyNames(obj).length === 0);
+    }
     //public exposed methods
     const that ={};
 
@@ -28,7 +31,7 @@ module.exports = (function(){
         wordnik.getDefinition(word,function(err,json){
             if(err) return console.log('Error while fetching Definition from wordnik API',err);
             if(json.length === 0) {
-              console.log(`No Definition found for: ${word} \n`);
+              console.log(`No Definition found for: ${word}`);
             }else{
               console.log(`\nDefinitions: ${word} \n`);
               printDefinition(format.definition(json));
@@ -77,7 +80,7 @@ module.exports = (function(){
 
       wordnik.getExamples(word,function(err,json){
           if(err) return console.log('Error while fetching Examples from wordnik API',err);
-          if(json.length === 0){
+          if(isEmpty(json)){
             console.log(`No Examples found for: ${word}`);
           }else{
             console.log(`\nExamples: ${word} `);
@@ -115,6 +118,8 @@ module.exports = (function(){
      that.getWordOfTheDayDict = function(){
         let todayDate = (new Date()).toISOString().slice(0,10);
         wordnik.getWordOfTheDay(todayDate,function(err,json){
+          if(json.word == null) return console.log('Word of the Day not found');
+
           console.log(`\nWord of the DAY(${todayDate}): ${json.word}`);
           that.getFullDictionary(json.word);
         });
