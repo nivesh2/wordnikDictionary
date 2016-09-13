@@ -1,5 +1,6 @@
 'use strict';
 
+const operations = require('../controllers/operations');
 const output = require('../config/output');
 
 module.exports = function(input){
@@ -12,6 +13,7 @@ module.exports = function(input){
 
         switch(command){
             case 'def':
+                operations.getDefinition(word);
                 break;
             case 'syn':
                 break;

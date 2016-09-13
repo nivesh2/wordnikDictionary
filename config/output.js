@@ -16,6 +16,6 @@ operations:
 
 Example to get definition of word "hacking":
 ./dict def hacking`,
-
+  errBlankWord : 'Word required',
   errCommand : 'Invalid command. type ./dict --help for help',
 } ;
