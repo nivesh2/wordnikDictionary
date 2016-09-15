@@ -8,3 +8,5 @@
 
 type: `./dict --help`
 for help.
+
+> view wiki page for more information
