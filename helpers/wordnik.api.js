@@ -46,6 +46,11 @@ module.exports = (function(){
       fetchData(path,callback);
     };
 
+    that.getRandomWord = function(callback){
+      let path = `words.json/randomWord?hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1&api_key=${api_key}`;
+      fetchData(path,callback);
+    };
+
     return that;
 
 })();

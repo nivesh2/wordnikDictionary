@@ -1,9 +1,10 @@
 'use strict';
 
 const operations = require('../controllers/operations');
+const gameOperations = require('../controllers/game.operations');
 const output = require('../config/output');
 
-module.exports = function(input){
+module.exports = function(input,_game){
     let app = input[0];
     let command = input[1];
     let word = input[2];
@@ -28,7 +29,16 @@ module.exports = function(input){
                 operations.getFullDictionary(word);
                 break;
             case 'play':
-
+                gameOperations.getQuestion(function(err,result){
+                    if(err) return console.log('Error while fetching Question',err);
+                    _game.on = true;
+                    _game.word = result.word;
+                    _game.answerMode = 1;
+                    _game.hintCounter=0;
+                    console.log('-----------------Game Started-------------------');
+                    console.log(`Enter the correct word for definition, synonym, or antonym of the word.\n`);
+                    console.log(`Question: ${result.question}`);
+                });
                 break;
             case '--help':
                 console.log(output.help);

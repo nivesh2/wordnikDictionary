@@ -2,7 +2,7 @@
 
 const wordnik = require('../helpers/wordnik.api');
 const output = require('../config/output');
-const format = require('../helpers/format.helper');
+const helper = require('../helpers/helper');
 const waterfall = require('async-waterfall');
 
 module.exports = (function(){
@@ -34,7 +34,7 @@ module.exports = (function(){
               console.log(`No Definition found for: ${word}`);
             }else{
               console.log(`\nDefinitions: ${word} \n`);
-              printDefinition(format.definition(json));
+              printDefinition(helper.formatDefinition(json));
             }
             //for async-waterfall, while getting Full dictinary
             if(callback) callback(null,word);
@@ -118,12 +118,13 @@ module.exports = (function(){
      that.getWordOfTheDayDict = function(){
         let todayDate = (new Date()).toISOString().slice(0,10);
         wordnik.getWordOfTheDay(todayDate,function(err,json){
+          if(err) return console.log('Error while fetching Word of the Day from API',err);
           if(json.word == null) return console.log('Word of the Day not found');
 
           console.log(`\nWord of the DAY(${todayDate}): ${json.word}`);
           that.getFullDictionary(json.word);
         });
-     }
+     };
     return that;
 
 })();
