@@ -36,7 +36,7 @@ module.exports = (function(){
               console.log(`\nDefinitions: ${word} \n`);
               printDefinition(helper.formatDefinition(json));
             }
-            //for async-waterfall, while getting Full dictinary
+            //for async-waterfall, while getting Full dictionary
             if(callback) callback(null,word);
         });
     };
@@ -53,7 +53,7 @@ module.exports = (function(){
               let result = json[0].words.join(',');
               console.log(result.trim()+'\n');
             }
-            //for async-waterfall, while getting Full dictinary
+            //for async-waterfall, while getting Full dictionary
             if(callback) callback(null,word);
         });
     };
@@ -70,7 +70,7 @@ module.exports = (function(){
               let result = json[0].words.join(',');
               console.log(result.trim()+'\n');
             }
-            //for async-waterfall, while getting Full dictinary
+            //for async-waterfall, while getting Full dictionary
             if(callback) callback(null,word);
         });
     };
@@ -99,7 +99,7 @@ module.exports = (function(){
      */
      that.getFullDictionary = function(word){
 
-       //runnig all the above operations squentially
+       //runnig all the above operations sequentially
        waterfall([
          function(callback){
            that.getDefinition(word,callback);
