@@ -14,7 +14,11 @@ module.exports = (function(){
     const fetchData = function(path,callback){
       client.get(path, (err, res, body)=>{
           if(err) return callback(err);
-          return callback(null,body);
+          if(res.statusCode === 200){
+              return callback(null,body);
+          }
+          return console.log(`Error while connecting to Wordnik API, Response StatusCode: ${res.statusCode}`);  
+          
       });
     };
 
