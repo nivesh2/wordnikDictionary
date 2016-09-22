@@ -17,7 +17,7 @@ module.exports = (function(){
           if(res.statusCode === 200){
               return callback(null,body);
           }
-          return console.log(`Error while connecting to Wordnik API, Response StatusCode: ${res.statusCode}`);  
+          return callback(`|| Response StatusCode: ${res.statusCode}`,null);  
           
       });
     };
